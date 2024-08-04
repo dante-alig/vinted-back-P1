@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -14,9 +17,9 @@ app.use(cors());
 mongoose.connect("mongodb://localhost:27017/vintedlog");
 
 cloudinary.config({
-  cloud_name: "dchhagcqd",
-  api_key: "714416759164992",
-  api_secret: "2zK2jbsAIS8--rSqU7KGw0bH3z0",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const convertToBase64 = (file) => {
